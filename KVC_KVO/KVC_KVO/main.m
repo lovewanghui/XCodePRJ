@@ -26,6 +26,19 @@
  注意:
  KVC所涉及的协议,<NSKeyValueCoding>,里面还有一些用于处理异常的方法,可以根据需要去实现,
  理解KVC查找<key>的步骤,以及每个步骤分支,所调用的协议方法.
+ 思考:为什么要引用这一套机制:
+
+ */
+
+
+/**
+ KVO (Key-Value Observing )
+ KVO建立在 KVC 之上，它能够观察一个对象的 KVC key path 值的变化。
+ 举个例子，用代码观察一个 person 对象的 address 变化，以下是实现的三个方法：
+ watchPersonForChangeOfAddress: 实现观察
+ observeValueForKeyPath:ofObject:change:context: 在被观察的 key path 的值变化时调用。
+ dealloc 停止观察
+ 
  */
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -38,6 +51,18 @@ int main(int argc, const char * argv[]) {
         
         [myPerson setValue:@"AnHui" forKeyPath:@"myAddress.birthPlace"];
         NSLog(@"%@",[myPerson valueForKeyPath:@"myAddress.birthPlace"]);
+        
+        //KVO的使用
+        
+        [myPerson addObserver:myPerson forKeyPath:@"myAddress.birthPlace" options:0 context:@"add"];
+        [myPerson setValue:@"JiangSu" forKeyPath:@"myAddress.birthPlace"];
+        NSLog(@"%@",[myPerson valueForKeyPath:@"myAddress.birthPlace"]);
+        
+        
+        
+        
+        
+        
         
         
     }

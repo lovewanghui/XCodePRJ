@@ -18,4 +18,6 @@
 }
 @property(nonatomic)Adress* myAddress;
 
+//-(void)watchPersonForChangeOfAddress:(Person *)p;
+
 @end
