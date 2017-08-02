@@ -8,6 +8,10 @@
 
 #import "ViewController.h"
 
+/**
+ 在类延伸中:声明的变量都是私有变量.也可以在类延伸中声明方法(私有方法).
+ 或者说直接在实现文件中实现一个方法,不在声明文件中声明.
+ */
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *firstArg;
 @property (weak, nonatomic) IBOutlet UITextField *seccondArg;
