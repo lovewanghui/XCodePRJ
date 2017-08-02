@@ -12,7 +12,7 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         Person* myPerson = [[Person alloc]initWith:@"DMH" old:24 gender:@"male"];
-        [myPerson selfIntroduce];
+        //[myPerson selfIntroduce];
         
 //        [myPerson speakPhone]; 这个方法是不能调用的.
         
@@ -20,7 +20,16 @@ int main(int argc, const char * argv[]) {
         
         myPerson->_homeName = @"mahuzi";
         
-        [myPerson selfIntroduce];
+      //  [myPerson selfIntroduce];
+        
+        
+        /**
+         **事实证明:OC中没有真正的私有方法.**
+         即便是通过类延伸,或者不在头文件中声明,你也可以通过SEl 来调用....
+         只要你知道方法的名称就可以.
+         */
+        SEL test = NSSelectorFromString(@"speakPhone");
+        [myPerson  performSelector:test];
         
         
        
