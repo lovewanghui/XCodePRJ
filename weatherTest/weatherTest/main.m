@@ -18,14 +18,18 @@ int main(int argc, const char * argv[]) {
                                                    cachePolicy:0 timeoutInterval:3];
         //NSData* repondData = [[NSData alloc]init];
         NSData  *data=[NSURLConnection sendSynchronousRequest:myReq returningResponse:nil error:nil];
-        if(data==nil)
+        
+        NSDictionary *weatherDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+        //转码UIF-8
+        NSString* jsonString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        if(jsonString==nil)
             
             NSLog(@"登陆失败,请重试");
        else
        {
            NSLog(@"ok");
-           NSDictionary *weatherDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-               NSLog(@"%@",weatherDic);
+//           NSDictionary *weatherDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+               NSLog(@"%@",jsonString);
     
 }
     return 0;
